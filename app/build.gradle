@@ -1,16 +1,28 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-kapt"
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         applicationId "com.retailer.poc.dealbrowser"
         minSdkVersion 15
-        targetSdkVersion 19
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -20,5 +32,25 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Dagger
+    implementation "com.google.dagger:dagger:$v_dagger"
+    implementation "com.google.dagger:dagger-android-support:$v_dagger"
+    kapt "com.google.dagger:dagger-compiler:$v_dagger"
+    kapt "com.google.dagger:dagger-android-processor:$v_dagger"
+
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$v_kotlin"
+
+    //Constraint Layout
+    implementation "androidx.constraintlayout:constraintlayout:$v_contraint_layout"
+
+    //Recycler View
+    implementation "androidx.recyclerview:recyclerview:$v_recyclerview"
+
+}
+
+repositories {
+    mavenCentral()
 }

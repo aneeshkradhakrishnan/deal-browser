@@ -1,4 +1,32 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    tools:context=".MainActivity" tools:ignore="MergeRootFrame" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.retailer.poc.dealbrowser.viewmodels.DealBrowserViewModel" />
+
+        <import type="androidx.recyclerview.widget.DividerItemDecoration"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/white_color">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/deals_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:setLayoutManager="@{vm.layoutManager}"
+            app:setAdapter="@{vm.adapter}"
+            app:itemDivider="@{DividerItemDecoration.VERTICAL}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

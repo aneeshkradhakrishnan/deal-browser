@@ -1,49 +1,72 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/deal_list_item"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
-    android:background="@drawable/white_color"
-    android:orientation="horizontal"
-    android:padding="5dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:orientation="vertical">
+    <data>
 
-        <ImageView
-            android:id="@+id/deal_list_item_image_view"
-            android:layout_width="@dimen/deal_list_item_image_size"
-            android:layout_height="@dimen/deal_list_item_image_size"
-            android:contentDescription="@string/product_image_content_description"/>
-
-    </LinearLayout>
-
-    <LinearLayout
+        <variable
+            name="vm"
+            type="com.retailer.poc.dealbrowser.deals.DealItem" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:orientation="vertical">
+        android:fitsSystemWindows="true"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingBottom="@dimen/margin_small">
+
+        <ImageView
+            android:id="@+id/deal_image"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/deal_image_size"
+            android:contentDescription="@string/product_image_content_description"
+            app:resource="@{vm.image}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias=".02"/>
 
         <TextView
-            android:id="@+id/deal_list_item_title"
-            android:layout_width="match_parent"
+            android:id="@+id/deal_title"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:contentDescription="title"
             android:textSize="18sp"
-            android:contentDescription="title" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@drawable/gray_color"></LinearLayout>
+            android:text="@{vm.title}"
+            android:maxLines="2"
+            app:layout_constraintStart_toEndOf="@+id/deal_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/deal_image"
+            app:layout_constraintBottom_toTopOf="@+id/separator_line"/>
+
+        <View
+            android:id="@+id/separator_line"
+            android:layout_width="0dp"
+            android:layout_height=".5dp"
+            android:background="@drawable/gray_color"
+            app:layout_constraintStart_toEndOf="@+id/deal_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/deal_title"
+            app:layout_constraintBottom_toTopOf="@+id/deal_price"/>
+
         <TextView
-            android:id="@+id/deal_list_item_price"
+            android:id="@+id/deal_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="price"
+            android:textSize="18sp"
+            android:text="@{vm.salePrice}"
+            app:layout_constraintStart_toEndOf="@+id/deal_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/separator_line"
+            app:layout_constraintBottom_toBottomOf="@+id/deal_image"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:contentDescription="price" />
-    </LinearLayout>
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".25"/>
 
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
