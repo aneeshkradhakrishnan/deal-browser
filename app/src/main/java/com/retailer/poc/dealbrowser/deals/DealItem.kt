@@ -1,10 +1,38 @@
 package com.retailer.poc.dealbrowser.deals
 
-class DealItem(var index: Int, var id: String, var title: String, var description:
-                String, var originalPrice: String, var salePrice:
-                String, var image: Int, var aisle: String) {
+import com.google.gson.annotations.SerializedName
+
+data class DealItem(
+
+    @SerializedName("_id")
+    val id: String?,
+
+    @SerializedName("aisle")
+    val aisle: String,
+
+    @SerializedName("description")
+    val description: String?,
+
+    @SerializedName("guid")
+    val guid: String,
+
+    @SerializedName("image")
+    var image: String?,
+
+    @SerializedName("index")
+    val index:Int?,
+
+    @SerializedName("price")
+    val originalPrice: String?,
+
+    @SerializedName("salePrice")
+    val salePrice: String?,
+
+    @SerializedName("title")
+    val title: String?
+) {
 
     override fun toString(): String {
-        return title
+        return title?:""
     }
 }

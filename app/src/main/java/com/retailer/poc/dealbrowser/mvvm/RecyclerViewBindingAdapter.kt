@@ -3,13 +3,20 @@ package com.retailer.poc.dealbrowser.mvvm
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.*
+import com.squareup.picasso.Picasso
 
 class RecyclerViewBindingAdapter {
     companion object {
         @JvmStatic
-        @BindingAdapter("resource")
-        fun setImageViewResource(imageView: ImageView, resource: Int) {
-            imageView.setImageResource(resource)
+        @BindingAdapter("url")
+        fun setImageViewResource(imageView: ImageView, url: String?) {
+            url?.let { it ->
+                Picasso.get()
+                        .load(it)
+//                      .placeholder(R.drawable.user_placeholder)
+//                      .error(R.drawable.user_placeholder_error)
+                        .into(imageView)
+            }
         }
 
         @JvmStatic

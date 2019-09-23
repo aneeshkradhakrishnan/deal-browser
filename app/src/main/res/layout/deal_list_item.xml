@@ -19,7 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/deal_image_size"
             android:contentDescription="@string/product_image_content_description"
-            app:resource="@{vm.image}"
+            app:url="@{vm.image}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/guideline_image"
             app:layout_constraintTop_toTopOf="parent"

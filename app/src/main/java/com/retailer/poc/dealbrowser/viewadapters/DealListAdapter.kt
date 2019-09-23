@@ -31,7 +31,7 @@ class DealListAdapter @Inject constructor() : RecyclerView.Adapter<DealsViewHold
         data?.get(position)?.let { holder.bind(it) }
     }
 
-    fun populateData(list: List<DealItem>) {
+    fun populateData(list: List<DealItem>?) {
         data = list
         notifyDataSetChanged()
     }

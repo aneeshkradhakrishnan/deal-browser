@@ -7,4 +7,6 @@ ext {
     v_retrofit = '2.6.1'
     v_rxjava = '2.2.12'
     v_rxadapter = '2.6.1'
+    v_rxandroid = '2.1.1'
+    v_picasso = '2.71828'
 }
