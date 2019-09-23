@@ -1,6 +1,5 @@
 package com.retailer.poc.dealbrowser.views
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -11,20 +10,16 @@ import com.retailer.poc.dealbrowser.viewmodels.DealBrowserViewModel
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
-class MainActivity : Activity() {
+class MainActivity : AppCompatActivity() {
 
     @Inject lateinit var viewModel:DealBrowserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel.layoutManager = LinearLayoutManager(this)
         binding.vm = viewModel
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.populateDealsList()
+        lifecycle.addObserver(viewModel)
     }
 }
