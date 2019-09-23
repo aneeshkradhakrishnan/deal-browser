@@ -4,4 +4,7 @@ ext {
     v_dagger = '2.24'
     v_contraint_layout = '1.1.3'
     v_recyclerview = '1.0.0'
+    v_retrofit = '2.6.1'
+    v_rxjava = '2.2.12'
+    v_rxadapter = '2.6.1'
 }

@@ -49,6 +49,15 @@ dependencies {
     //Recycler View
     implementation "androidx.recyclerview:recyclerview:$v_recyclerview"
 
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$v_retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$v_retrofit"
+
+    //RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$v_rxjava"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$v_rxadapter"
+
+
 }
 
 repositories {
