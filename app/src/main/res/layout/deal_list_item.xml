@@ -4,22 +4,25 @@
     <data>
 
         <variable
-            name="vm"
+            name="deal"
             type="com.retailer.poc.dealbrowser.deals.DealItem" />
+        <variable
+            name="mainVm"
+            type="com.retailer.poc.dealbrowser.viewmodels.DealBrowserViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        android:paddingTop="@dimen/margin_small"
-        android:paddingBottom="@dimen/margin_small">
+        android:padding="@dimen/margin_small"
+        android:onClick="@{() -> mainVm.itemClicked(deal)}">
 
         <ImageView
             android:id="@+id/deal_image"
             android:layout_width="0dp"
             android:layout_height="@dimen/deal_image_size"
             android:contentDescription="@string/product_image_content_description"
-            app:url="@{vm.image}"
+            app:url="@{deal.image}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/guideline_image"
             app:layout_constraintTop_toTopOf="parent"
@@ -31,19 +34,19 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:contentDescription="title"
-            android:textSize="18sp"
-            android:text="@{vm.title}"
+            android:textSize="22dp"
+            android:text="@{deal.title}"
             android:maxLines="2"
             app:layout_constraintStart_toEndOf="@+id/deal_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/deal_image"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/separator_line"/>
 
         <View
             android:id="@+id/separator_line"
             android:layout_width="0dp"
             android:layout_height=".5dp"
-            android:background="@drawable/gray_color"
+            android:background="@color/gray_color"
             app:layout_constraintStart_toEndOf="@+id/deal_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/deal_title"
@@ -54,19 +57,70 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:contentDescription="price"
-            android:textSize="18sp"
-            android:text="@{vm.salePrice}"
+            android:textSize="22dp"
+            android:text="@{deal.salePrice != null ? deal.salePrice : deal.originalPrice}"
             app:layout_constraintStart_toEndOf="@+id/deal_image"
+            app:layout_constraintEnd_toStartOf="@+id/aisle"
+            app:layout_constraintTop_toBottomOf="@+id/separator_line"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/ship_text"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textSize="15dp"
+            android:text="Ship"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:paddingRight="@dimen/margin_small"
+            app:layout_constraintStart_toEndOf="@+id/deal_price"
+            app:layout_constraintEnd_toStartOf="@+id/or_text"
+            app:layout_constraintTop_toBottomOf="@+id/separator_line"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/or_text"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textSize="15dp"
+            android:text="Or"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@color/gray_color"
+            android:paddingRight="@dimen/margin_small"
+            app:layout_constraintStart_toEndOf="@+id/ship_text"
+            app:layout_constraintEnd_toStartOf="@+id/aisle"
+            app:layout_constraintTop_toBottomOf="@+id/separator_line"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/aisle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="price"
+            android:textSize="15dp"
+            android:text="@{deal.aisle}"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@color/actionbar_color"
+            android:textAllCaps="true"
+            android:background="@drawable/circle_background"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            app:layout_constraintStart_toEndOf="@+id/or_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/separator_line"
-            app:layout_constraintBottom_toBottomOf="@+id/deal_image"/>
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent=".25"/>
+            app:layout_constraintGuide_percent=".35"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

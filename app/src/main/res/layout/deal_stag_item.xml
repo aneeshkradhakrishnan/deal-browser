@@ -1,0 +1,58 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="deal"
+            type="com.retailer.poc.dealbrowser.deals.DealItem" />
+        <variable
+            name="mainVm"
+            type="com.retailer.poc.dealbrowser.viewmodels.DealBrowserViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:paddingLeft="@dimen/margin_small"
+        android:onClick="@{() -> mainVm.itemClicked(deal)}">
+
+        <ImageView
+            android:id="@+id/deal_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/product_image_content_description"
+            app:url="@{deal.image}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/deal_title"
+            app:layout_constraintHorizontal_bias=".02"/>
+
+        <TextView
+            android:id="@+id/deal_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="price"
+            android:textSize="18sp"
+            android:text="@{deal.salePrice != null ? deal.salePrice : deal.originalPrice}"
+            app:layout_constraintStart_toEndOf="@+id/deal_image"
+            app:layout_constraintStart_toStartOf="@+id/deal_image"
+            app:layout_constraintEnd_toEndOf="@+id/deal_image"
+            app:layout_constraintTop_toBottomOf="@+id/deal_image"
+            app:layout_constraintBottom_toTopOf="@+id/deal_title"/>
+
+        <TextView
+            android:id="@+id/deal_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="title"
+            android:textSize="18sp"
+            android:text="@{deal.title}"
+            app:layout_constraintStart_toStartOf="@+id/deal_image"
+            app:layout_constraintEnd_toEndOf="@+id/deal_image"
+            app:layout_constraintTop_toBottomOf="@+id/deal_price"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -9,4 +9,5 @@ ext {
     v_rxadapter = '2.6.1'
     v_rxandroid = '2.1.1'
     v_picasso = '2.71828'
+    v_material = '1.0.0-rc01'
 }

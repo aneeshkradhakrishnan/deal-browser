@@ -3,7 +3,7 @@ package com.retailer.poc.dealbrowser.views
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.retailer.poc.dealbrowser.R
 import com.retailer.poc.dealbrowser.databinding.ActivityMainBinding
 import com.retailer.poc.dealbrowser.viewmodels.DealBrowserViewModel
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        viewModel.layoutManager = LinearLayoutManager(this)
+        viewModel.itemDivider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         binding.vm = viewModel
         lifecycle.addObserver(viewModel)
     }

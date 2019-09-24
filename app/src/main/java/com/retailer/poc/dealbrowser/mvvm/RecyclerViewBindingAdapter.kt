@@ -13,16 +13,23 @@ class RecyclerViewBindingAdapter {
             url?.let { it ->
                 Picasso.get()
                         .load(it)
-//                      .placeholder(R.drawable.user_placeholder)
-//                      .error(R.drawable.user_placeholder_error)
                         .into(imageView)
             }
         }
 
         @JvmStatic
-        @BindingAdapter("itemDivider")
-        fun setItemDecorator(recyclerView: RecyclerView, orientation:Int) {
-            recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, orientation))
+        @BindingAdapter(*["layoutType", "itemDivider", "spans"])
+        fun setItemDecorator(recyclerView: RecyclerView, layoutType:String, decoration: DividerItemDecoration, spans:Int) {
+            when(layoutType){
+                "stag" -> {
+                    recyclerView.layoutManager = StaggeredGridLayoutManager( spans, StaggeredGridLayoutManager.VERTICAL)
+                    recyclerView.removeItemDecoration(decoration)
+                }
+                else -> {
+                    recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+                    recyclerView.addItemDecoration(decoration)
+                }
+            }
         }
     }
 }
