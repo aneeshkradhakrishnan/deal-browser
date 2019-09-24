@@ -1,17 +1,10 @@
 package com.retailer.poc.dealbrowser.viewadapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.content.Context
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.retailer.poc.dealbrowser.R
 import com.retailer.poc.dealbrowser.databinding.DealListItemBinding
 import com.retailer.poc.dealbrowser.databinding.DealStagItemBinding
-
 import com.retailer.poc.dealbrowser.deals.DealItem
 import com.retailer.poc.dealbrowser.viewmodels.DealBrowserViewModel
 import javax.inject.Inject
@@ -23,7 +16,7 @@ class DealListAdapter @Inject constructor() : RecyclerView.Adapter<DealsViewHold
     private var viewType: Int = 1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DealsViewHolder {
-        when(viewType) {
+        when (viewType) {
 
             -1 -> {
                 val inflater: LayoutInflater = LayoutInflater.from(parent.context)

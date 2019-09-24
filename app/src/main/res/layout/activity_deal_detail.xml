@@ -1,0 +1,155 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="deal"
+            type="com.retailer.poc.dealbrowser.deals.DealItem" />
+        <import type="android.view.View"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <ImageView
+            android:id="@+id/deal_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/product_image_content_description"
+            app:url="@{deal.image}"
+            app:layout_constraintStart_toStartOf="@+id/margin_left"
+            app:layout_constraintEnd_toEndOf="@+id/margin_right"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/guideline_image_bottom"/>
+
+        <TextView
+            android:id="@+id/sale_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/price"
+            android:textSize="@dimen/text_xlarge"
+            android:textColor="@color/actionbar_color"
+            android:textStyle="bold"
+            android:text="@{deal.salePrice != null ? deal.salePrice : deal.originalPrice}"
+            app:layout_constraintStart_toStartOf="@+id/margin_left"
+            app:layout_constraintEnd_toStartOf="@+id/reg_tag"
+            app:layout_constraintTop_toTopOf="@+id/guideline_image_bottom"/>
+
+        <TextView
+            android:id="@+id/reg_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/price"
+            android:textSize="@dimen/text_large"
+            android:text="@string/reg"
+            android:visibility="@{deal.salePrice != null? View.VISIBLE: View.GONE}"
+            android:layout_marginRight="@dimen/margin_small"
+            app:layout_constraintStart_toEndOf="@+id/sale_price"
+            app:layout_constraintEnd_toStartOf="@+id/original_price"
+            app:layout_constraintTop_toTopOf="@+id/guideline_image_bottom"/>
+
+        <TextView
+            android:id="@+id/original_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/price"
+            android:textSize="@dimen/text_large"
+            android:text="@{deal.originalPrice}"
+            android:visibility="@{deal.salePrice != null? View.VISIBLE: View.GONE}"
+            app:layout_constraintStart_toEndOf="@+id/reg_tag"
+            app:layout_constraintEnd_toEndOf="@+id/margin_right"
+            app:layout_constraintTop_toTopOf="@+id/guideline_image_bottom"/>
+
+        <View
+            android:id="@+id/original_price_strikethru"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:visibility="@{deal.salePrice != null? View.VISIBLE: View.GONE}"
+            app:layout_constraintStart_toStartOf="@+id/original_price"
+            app:layout_constraintEnd_toEndOf="@+id/original_price"
+            app:layout_constraintTop_toTopOf="@+id/original_price"
+            app:layout_constraintBottom_toBottomOf="@+id/original_price"/>
+
+        <TextView
+            android:id="@+id/deal_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/title"
+            android:textSize="@dimen/text_large"
+            android:text="@{deal.title}"
+            android:maxLines="2"
+            app:layout_constraintStart_toStartOf="@+id/margin_left"
+            app:layout_constraintEnd_toEndOf="@+id/margin_right"
+            app:layout_constraintTop_toBottomOf="@+id/sale_price"/>
+
+        <TextView
+            android:id="@+id/deal_description"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/description"
+            android:textSize="@dimen/text_xsmall"
+            android:text="@{deal.description}"
+            app:layout_constraintStart_toStartOf="@+id/margin_left"
+            app:layout_constraintEnd_toEndOf="@+id/margin_right"
+            app:layout_constraintTop_toBottomOf="@+id/deal_title"
+            app:layout_constraintBottom_toTopOf="@+id/add_to_list"/>
+
+        <TextView
+            android:id="@+id/add_to_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_large"
+            android:background="@color/gray_color"
+            android:text="@string/add_to_list"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingBottom="@dimen/margin_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/add_to_cart"
+            app:layout_constraintTop_toBottomOf="@+id/deal_description"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/add_to_cart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_large"
+            android:background="@color/actionbar_color"
+            android:text="@string/add_to_cart"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:paddingTop="@dimen/margin_medium"
+            android:paddingBottom="@dimen/margin_medium"
+            app:layout_constraintStart_toEndOf="@+id/add_to_list"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/deal_description"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/margin_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".05"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/margin_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".95"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_image_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".5"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

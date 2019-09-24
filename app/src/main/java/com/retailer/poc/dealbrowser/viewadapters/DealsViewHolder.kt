@@ -6,7 +6,7 @@ import com.retailer.poc.dealbrowser.databinding.DealStagItemBinding
 import com.retailer.poc.dealbrowser.deals.DealItem
 import com.retailer.poc.dealbrowser.viewmodels.DealBrowserViewModel
 
-class DealsViewHolder: RecyclerView.ViewHolder {
+class DealsViewHolder : RecyclerView.ViewHolder {
 
     private var itemBinding: DealListItemBinding? = null
     private var stagItemBinding: DealStagItemBinding? = null
@@ -15,7 +15,7 @@ class DealsViewHolder: RecyclerView.ViewHolder {
         this.itemBinding = itemBinding
     }
 
-    constructor( stagItemBinding: DealStagItemBinding) : super(stagItemBinding.root) {
+    constructor(stagItemBinding: DealStagItemBinding) : super(stagItemBinding.root) {
         this.stagItemBinding = stagItemBinding
     }
 

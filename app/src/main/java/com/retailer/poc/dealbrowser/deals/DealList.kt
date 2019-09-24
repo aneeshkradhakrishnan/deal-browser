@@ -4,12 +4,12 @@ import com.google.gson.annotations.SerializedName
 
 data class DealList(
 
-    @SerializedName("_id")
-    val id: String?,
+        @SerializedName("_id")
+        val id: String?,
 
-    @SerializedName("data")
-    val data: List<DealItem>?,
+        @SerializedName("data")
+        val data: List<DealItem>?,
 
-    @SerializedName("type")
-    val type: String
+        @SerializedName("type")
+        val type: String
 )

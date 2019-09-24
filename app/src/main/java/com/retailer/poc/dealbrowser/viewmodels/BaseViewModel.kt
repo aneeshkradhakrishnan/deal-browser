@@ -6,7 +6,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-abstract class BaseViewModel: LifecycleObserver {
+abstract class BaseViewModel : LifecycleObserver {
     private val lifeCycleSubscriptions: CompositeDisposable = CompositeDisposable()
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)

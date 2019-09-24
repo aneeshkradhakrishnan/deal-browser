@@ -2,7 +2,10 @@ package com.retailer.poc.dealbrowser.mvvm
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.*
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.squareup.picasso.Picasso
 
 class RecyclerViewBindingAdapter {
@@ -19,10 +22,10 @@ class RecyclerViewBindingAdapter {
 
         @JvmStatic
         @BindingAdapter(*["layoutType", "itemDivider", "spans"])
-        fun setItemDecorator(recyclerView: RecyclerView, layoutType:String, decoration: DividerItemDecoration, spans:Int) {
-            when(layoutType){
+        fun setItemDecorator(recyclerView: RecyclerView, layoutType: String, decoration: DividerItemDecoration, spans: Int) {
+            when (layoutType) {
                 "stag" -> {
-                    recyclerView.layoutManager = StaggeredGridLayoutManager( spans, StaggeredGridLayoutManager.VERTICAL)
+                    recyclerView.layoutManager = StaggeredGridLayoutManager(spans, StaggeredGridLayoutManager.VERTICAL)
                     recyclerView.removeItemDecoration(decoration)
                 }
                 else -> {
