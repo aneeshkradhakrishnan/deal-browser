@@ -10,4 +10,6 @@ ext {
     v_rxandroid = '2.1.1'
     v_picasso = '2.71828'
     v_material = '1.0.0-rc01'
+    v_mockk = '1.9.3'
+    v_junit = '4.12'
 }

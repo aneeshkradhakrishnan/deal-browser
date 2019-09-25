@@ -7,10 +7,9 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.retailer.poc.dealbrowser.deals.DealItem
 import com.retailer.poc.dealbrowser.deals.DealList
+import com.retailer.poc.dealbrowser.rx.RxHelper
 import com.retailer.poc.dealbrowser.service.DealsService
 import com.retailer.poc.dealbrowser.viewadapters.DealListAdapter
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class DealBrowserViewModel @Inject constructor() : BaseViewModel() {
@@ -19,6 +18,8 @@ class DealBrowserViewModel @Inject constructor() : BaseViewModel() {
     lateinit var adapter: DealListAdapter
     @Inject
     lateinit var dealService: DealsService
+    @Inject
+    lateinit var rxHelper: RxHelper
 
     lateinit var startDealDetailsActivity: (deal: DealItem) -> Unit
     lateinit var itemDivider: DividerItemDecoration
@@ -29,8 +30,7 @@ class DealBrowserViewModel @Inject constructor() : BaseViewModel() {
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun fetchDealList() {
         subsribeOnLifeCycle(dealService.getDeals()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(rxHelper.singleTransformer())
                 .subscribe(this::populateDeals, this::errorFetchingDeals))
     }
 
