@@ -13,6 +13,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -68,7 +69,10 @@ dependencies {
     testImplementation "io.mockk:mockk:${v_mockk}"
     testImplementation "junit:junit:${v_junit}"
 
-
+    //Espresso
+    androidTestImplementation "androidx.test.espresso:espresso-core:$v_espresso"
+    androidTestImplementation "androidx.test:runner:$v_testrunner"
+    androidTestImplementation "androidx.test:rules:$v_testrunner"
 }
 
 repositories {
