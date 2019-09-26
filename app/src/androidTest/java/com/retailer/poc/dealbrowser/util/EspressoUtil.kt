@@ -1,20 +1,45 @@
 package com.retailer.poc.dealbrowser.util
 
 import androidx.annotation.IdRes
-import androidx.test.espresso.Espresso
-import androidx.test.espresso.assertion.ViewAssertions
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.*
+import com.retailer.poc.dealbrowser.robots.RecyclerViewMatcher
+import org.hamcrest.CoreMatchers.not
+import org.hamcrest.Matchers
 
 object EspressoUtil {
 
     fun seesView(@IdRes id: Int) {
-        Espresso.onView(ViewMatchers.withId(id))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        onView(withId(id))
+                .check(matches(ViewMatchers.isDisplayed()))
     }
 
     fun seesViewWithText(@IdRes id: Int, text: String) {
-        Espresso.onView(ViewMatchers.withId(id))
-                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-                .check(ViewAssertions.matches(ViewMatchers.withText(text)))
+        onView(withId(id))
+                .check(matches(ViewMatchers.isDisplayed()))
+                .check(matches(ViewMatchers.withText(text)))
     }
+
+    fun seesRecyclerViewIndexWithText(@IdRes recycleView: Int, index: Int) {
+        onView(withId(recycleView))
+                .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(index, scrollTo()))
+                .check(matches(RecyclerViewMatcher.atPosition(index, hasDescendant(withText(not(Matchers.isEmptyString()))))))
+    }
+
+    fun seesRecyclerViewItems(@IdRes recycleView: Int, expectedCount: Int) {
+        onView(withId(recycleView)).check(RecyclerViewMatcher.hasItemsCount(expectedCount))
+    }
+
+    fun seesRecyclerViewIndexWithText(@IdRes recycleView: Int, index: Int, text: String) {
+        onView(withId(recycleView))
+                .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(index, scrollTo()))
+                .check(matches(RecyclerViewMatcher.atPosition(index, hasDescendant(withText(text)))))
+    }
+
 }

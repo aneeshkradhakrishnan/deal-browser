@@ -10,10 +10,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 @Module
-class DealBrowserDaggerModule {
+open class DealBrowserServiceModule {
 
     @Provides
-    fun provideDealService(): DealsService {
+    open fun provideDealService(): DealsService {
         val gson = GsonBuilder()
                 .setLenient()
                 .create()

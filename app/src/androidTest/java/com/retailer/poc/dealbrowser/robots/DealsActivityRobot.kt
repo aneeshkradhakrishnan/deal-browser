@@ -18,17 +18,17 @@ interface DealsActivityRobot {
         }
 
         fun seesTitle(): Eyes {
-            EspressoUtil.seesViewWithText(R.id.deal_title, "I‘m With Cupid Graphic Tee")
+            EspressoUtil.seesViewWithText(R.id.deal_title, "I‘m With Cupid 1 Graphic Tee")
             return this
         }
 
         fun seesSalePrice(): Eyes {
-            EspressoUtil.seesViewWithText(R.id.sale_price, "$9.99")
+            EspressoUtil.seesViewWithText(R.id.sale_price, "$9.19")
             return this
         }
 
         fun seesOriginalPrice(): Eyes {
-            EspressoUtil.seesViewWithText(R.id.original_price, "$12.99")
+            EspressoUtil.seesViewWithText(R.id.original_price, "$11.99")
             return this
         }
 

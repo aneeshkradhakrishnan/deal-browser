@@ -13,7 +13,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.retailer.poc.dealbrowser.app.EspressoTestRunner"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -43,6 +43,7 @@ dependencies {
 
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$v_kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$v_kotlin"
 
     //Constraint Layout
     implementation "androidx.constraintlayout:constraintlayout:$v_contraint_layout"
@@ -71,6 +72,7 @@ dependencies {
 
     //Espresso
     androidTestImplementation "androidx.test.espresso:espresso-core:$v_espresso"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$v_espresso"
     androidTestImplementation "androidx.test:runner:$v_testrunner"
     androidTestImplementation "androidx.test:rules:$v_testrunner"
 }

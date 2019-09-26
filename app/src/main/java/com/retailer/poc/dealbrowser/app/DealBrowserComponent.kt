@@ -9,6 +9,6 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [AndroidInjectionModule::class,
     AndroidSupportInjectionModule::class,
-    DealBrowserDaggerModule::class,
+    DealBrowserServiceModule::class,
     DealBrowserUiModule::class])
 interface DealBrowserComponent : AndroidInjector<DealBrowserApplication>
