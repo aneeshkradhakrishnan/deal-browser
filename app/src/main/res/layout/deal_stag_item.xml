@@ -23,8 +23,8 @@
 
         <ImageView
             android:id="@+id/deal_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/deal_image_size"
+            android:layout_height="@dimen/deal_image_size"
             android:contentDescription="@string/product_image_content_description"
             app:url="@{deal.image}"
             app:layout_constraintStart_toStartOf="parent"
